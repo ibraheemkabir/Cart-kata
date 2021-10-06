@@ -1,7 +1,22 @@
 export interface stockItem {
-    "ItemName": string,
-    "ItemPrice": number,
-    "AsActiveDiscount": boolean,
-    "DiscountPrice": number,
-    "DiscountQuantity":number
+    "id":string,
+    "itemName": string,
+    "itemPrice": number,
+    "priceType": 'unit' | 'weight',
+    "quantityInStock": number,
+    "asActiveDiscount": boolean,
+    "discountId"?: string,
+    "discountPrice": number,
+    "discountQuantity":number
+}
+
+export interface basketItems {
+    "item": stockItem,
+    "qty": number
+}
+
+export interface Discount {
+    "discountId": string,
+    "discountType": "sameItem" | "otherItem"| "special"
+    "specialDiscountItemId"?: string,
 }

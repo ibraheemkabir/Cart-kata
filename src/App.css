@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 0px auto;
 }
 
 .App-logo {
@@ -11,6 +12,36 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+.action{
+  justify-content: space-around !important;
+}
+.qtyfield {
+  width: 25%;
+  text-align: center;
+}
+
+.roundedBtn{
+  padding: 0.5rem;
+  margin-left: 0px !important;
+  padding: 0px
+}
+
+.container {
+  width: 90%;
+  margin: 5% auto;
+}
+
+.item_img{
+  margin: 10% auto;
 }
 
 .App-header {

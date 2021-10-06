@@ -1,4 +1,6 @@
-import {stockItem} from './../types/shoppingItem'
+import {stockItem, basketItems} from './../types/shoppingItem'
+import {findItem} from './../utils/utils';
+import {storeDiscounts} from './../models/storeItems';
 
 export class checkoutHandler {
     constructor(){
@@ -6,26 +8,43 @@ export class checkoutHandler {
     }
 
     async calculateDiscount(item:stockItem,qty:number):Promise<number>{
-        if(item.AsActiveDiscount){
-            let DiscountMultiple = qty/Number(item.DiscountQuantity) || '0.0'
-            let numberOfDiscount = DiscountMultiple.toString().split('.')[0]
-            let discountPrice = Number(numberOfDiscount) * qty
-            return discountPrice
+        if(item.asActiveDiscount){
+            let discount = findItem(item?.discountId!,storeDiscounts,'discountId');
+            if(discount){
+                switch(discount.discountType){
+                    case "sameItem":
+                        let DiscountMultiple = qty/Number(item.discountQuantity) || '0.0'
+                        let numberOfDiscount = DiscountMultiple.toString().split('.')[0]
+                        let discountPrice = Number(numberOfDiscount) * item?.discountPrice
+                        return discountPrice
+                }
+                    
+            }
+            return 0
         }
         return 0
     }
 
-    async calculateTotalPrice(item:stockItem,qty:number){
-        
+    async calculateTotalPrice(items:basketItems[]){
+        if(items.length > 0){
+            let total = 0
+            for (let i = 0; i<items.length; i++){
+                let price = await this.calculateItemPrice(items[i]['item'],items[i]['qty'])
+                total+=price
+            }
+            return total;
+        }
+        return 0
     }
 
     async calculateItemPrice(item:stockItem,qty:number){
-        if(item.AsActiveDiscount && qty>=item.DiscountQuantity){
-            let price = item.ItemPrice*qty
+        if(item.asActiveDiscount && qty>=item?.discountQuantity){
             let discount = await this.calculateDiscount(item,qty)
-            return (price - discount)
+            const remainingItems = (qty%item?.discountQuantity)
+            let price = item.itemPrice*remainingItems
+            return (price+discount)
         }else{
-            return item.ItemPrice*qty
+            return item.itemPrice*qty
         }
     }
 }

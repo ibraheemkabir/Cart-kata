@@ -2,6 +2,8 @@ export interface stockItem {
     "id":string,
     "itemName": string,
     "itemPrice": number,
+    "itemImage": string,
+    "itemDescription": string,
     "priceType": 'unit' | 'weight',
     "quantityInStock": number,
     "asActiveDiscount": boolean,

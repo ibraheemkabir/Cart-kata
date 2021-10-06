@@ -27,7 +27,19 @@ input[type="number"] {
 .qtyfield {
   width: 25%;
   text-align: center;
+    .MuiFilledInput-root{
+      background-color: transparent;
+      border-style: solid;
+      border-width: thin;
+      border-color: #8080802b;
+      border-radius: 4px;
+      &::after,&::before{
+        border-bottom: none;
+      }
+    }
+    
 }
+
 
 .roundedBtn{
   padding: 0.5rem;
@@ -38,6 +50,11 @@ input[type="number"] {
 .container {
   width: 90%;
   margin: 5% auto;
+}
+
+.totalContainer {
+  width: 70%;
+  margin: 3% auto;
 }
 
 .item_img{

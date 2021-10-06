@@ -10,29 +10,42 @@ import { AddShoppingCart } from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { basketItems,stockItem } from './../types/shoppingItem';
+import { useSelector } from 'react-redux';
+import { RootState } from './../common/store';
+import InputAdornment from '@mui/material/InputAdornment';
+import FilledInput from '@mui/material/FilledInput';
 
-
-export const ShoppingItemContainer = (props:{storeItem:stockItem,itemImg:string,name:string,onAddItem:(item:basketItems)=>void}) => {
+export const ShoppingItemContainer = (props:{
+        storeItem:stockItem,
+        itemImg:string,name:string,
+        onAddItem:(item:basketItems)=>void,
+        increaseQty: (index:number,qty:number) => void
+    }) => {
     const [qty,setQty] = React.useState(0)
+    const [weight,setWeight] = React.useState('0')
+
     const [invalidEntry,setInvalidEntry] = React.useState(false)
+    const userCart = useSelector((state: RootState) => state.shoppingCart.cart);
+    const { storeItem } = props;
 
     const handleAddItem = () => {
         if(Number(qty) ===  0){
             setInvalidEntry(true)
             return
         }
-        props.onAddItem(
-            {
-                "qty":qty,
-                "item": props.storeItem
-            }
-        )
+        const itemIdx = userCart.findIndex(e=> e.item.id === storeItem.id);
+        if(itemIdx != (-1)){
+            props.increaseQty(itemIdx,qty)
+        }else{
+            props.onAddItem({"qty":qty,"item": props.storeItem})
+        }
     }
 
-    const handleNavChange = (operator:string) => {
+    const handleQtyChange = (operator:string,value?:string) => {
         if(invalidEntry){
             setInvalidEntry(false)
         }
+        console.log(qty,value)
         switch(operator) {
             case 'minus':
                 qty > 0 && setQty(qty-1);
@@ -42,6 +55,10 @@ export const ShoppingItemContainer = (props:{storeItem:stockItem,itemImg:string,
                     setQty(qty+1);
                 }
                 return
+            case 'weight':
+                setQty(Number(value||'0'))
+                setWeight(value||'')
+                return
             default:
                 return
         }
@@ -49,46 +66,67 @@ export const ShoppingItemContainer = (props:{storeItem:stockItem,itemImg:string,
     }
 
     return <div>
-        <Card sx={{ maxWidth: 345, minHeight:100 }} >
+        <Card sx={{ maxWidth: 345, minHeight:100, justifyContent:"center", display:"flex" }}>
             <div>
-                <img src={props.itemImg} height={200} className="item_img"/>
-            </div>
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {props.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
-                </Typography>
-            </CardContent>
-            <CardActions className="action">
-                <>
-                    <IconButton className="roundedBtn">
-                        <RemoveCircle onClick={()=> handleNavChange('minus')} className="roundedBtn" />
-                    </IconButton>
-                    <TextField 
-                        value={qty}
-                        size="small"
-                        label={"quantity"} 
-                        error={invalidEntry}
-                        type={'number'}
-                        className={'qtyfield'} 
-                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} 
-                    />
-                    <IconButton className="roundedBtn" >
-                        <AddCircle 
-                            className="roundedBtn" 
-                            onClick={()=> handleNavChange('add')}
-                        />
-                    </IconButton> 
-                </>
                 <div>
-                    <Button size="small" color="primary" onClick={()=>handleAddItem()}>
-                        Add to Cart <AddShoppingCart/>
-                    </Button>
+                    <img src={storeItem.itemImage} height={200} className="item_img"/>
                 </div>
-            </CardActions>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {storeItem.itemName}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {storeItem.itemDescription}
+                    </Typography>
+                </CardContent>
+                <CardActions className="action">
+                    {
+                        storeItem.priceType === 'unit' ?
+                        <>
+                            <IconButton className="roundedBtn">
+                                <RemoveCircle onClick={()=> handleQtyChange('minus')} className="roundedBtn" />
+                            </IconButton>
+                            <TextField 
+                                value={qty}
+                                size="small"
+                                label={"quantity"} 
+                                error={invalidEntry}
+                                type={'number'}
+                                disabled={true}
+                                className={'qtyfield'} 
+                                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} 
+                            />
+                            <IconButton className="roundedBtn" >
+                                <AddCircle 
+                                    className="roundedBtn" 
+                                    onClick={()=> handleQtyChange('add')}
+                                />
+                            </IconButton> 
+                        </>
+                        : <>
+                            <TextField
+                                label="Weight"
+                                id="filled-start-adornment"
+                                sx={{ m: 1, width: '10ch' }}
+                                type={'number'}
+                                error={invalidEntry}
+                                className={'qtyfield'} 
+                                onChange={(e)=>handleQtyChange('weight',e.target.value)}
+                                value={weight}
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+                                }}
+                                variant="filled"
+                            />
+                        </>
+                    }
+                    <div>
+                        <Button size="small" color="primary" onClick={()=>handleAddItem()}>
+                            Add to Cart <AddShoppingCart/>
+                        </Button>
+                    </div>
+                </CardActions>
+            </div>
         </Card>
     </div>
 }

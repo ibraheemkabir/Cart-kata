@@ -7,7 +7,7 @@ export class checkoutHandler {
 
     }
 
-    async calculateDiscount(item:stockItem,qty:number):Promise<number>{
+    calculateDiscount(item:stockItem,qty:number):number{
         if(item.asActiveDiscount){
             let discount = findItem(item?.discountId!,storeDiscounts,'discountId');
             if(discount){
@@ -25,11 +25,11 @@ export class checkoutHandler {
         return 0
     }
 
-    async calculateTotalPrice(items:basketItems[]){
+    calculateTotalPrice(items:basketItems[]){
         if(items.length > 0){
             let total = 0
             for (let i = 0; i<items.length; i++){
-                let price = await this.calculateItemPrice(items[i]['item'],items[i]['qty'])
+                let price = this.calculateItemPrice(items[i]['item'],items[i]['qty'])
                 total+=price
             }
             return total;
@@ -37,9 +37,9 @@ export class checkoutHandler {
         return 0
     }
 
-    async calculateItemPrice(item:stockItem,qty:number){
+    calculateItemPrice(item:stockItem,qty:number){
         if(item.asActiveDiscount && qty>=item?.discountQuantity){
-            let discount = await this.calculateDiscount(item,qty)
+            let discount = this.calculateDiscount(item,qty)
             const remainingItems = (qty%item?.discountQuantity)
             let price = item.itemPrice*remainingItems
             return (price+discount)

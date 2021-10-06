@@ -38,7 +38,9 @@ export const ShoppingItemContainer = (props:{storeItem:stockItem,itemImg:string,
                 qty > 0 && setQty(qty-1);
                 return
             case 'add':
-                setQty(qty+1);
+                if(qty < props.storeItem.quantityInStock){
+                    setQty(qty+1);
+                }
                 return
             default:
                 return

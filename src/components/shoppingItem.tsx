@@ -13,7 +13,6 @@ import { basketItems,stockItem } from './../types/shoppingItem';
 import { useSelector } from 'react-redux';
 import { RootState } from './../common/store';
 import InputAdornment from '@mui/material/InputAdornment';
-import FilledInput from '@mui/material/FilledInput';
 
 export const ShoppingItemContainer = (props:{
         storeItem:stockItem,
@@ -33,7 +32,7 @@ export const ShoppingItemContainer = (props:{
             setInvalidEntry(true)
             return
         }
-        const itemIdx = userCart.findIndex(e=> e.item.id === storeItem.id);
+        const itemIdx = userCart.findIndex((e:basketItems)=> e.item.id === storeItem.id);
         if(itemIdx != (-1)){
             props.increaseQty(itemIdx,qty)
         }else{

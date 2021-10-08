@@ -7,7 +7,7 @@ export const stockItems: stockItem[] = [
     {
         id: "10001",
         itemName: 'Cola',
-        itemPrice: 0.5,
+        itemPrice: 0.7,
         priceType: 'unit',
         quantityInStock: 50,
         asActiveDiscount: true,
@@ -27,8 +27,8 @@ export const stockItems: stockItem[] = [
         itemDescription: 'A can of delicious beans stocked with vitamins.',
         quantityInStock: 5,
         discountId: "10001",
-        discountPrice: 1,
-        discountQuantity: 2
+        discountPrice: 1.4,
+        discountQuantity: 3
     },
     {
         id: "1003",

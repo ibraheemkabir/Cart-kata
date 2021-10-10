@@ -1,4 +1,4 @@
-import {checkoutHandler} from '../common/handler';
+import {checkoutHandler} from '../common/checkout';
 import { stockItem } from '../types/shoppingItem'
 import { stockItems } from './testItemsFactory';
 
@@ -26,7 +26,7 @@ describe('checkout handler singleItem test', ()=>{
         let Item:stockItem = stockItems[1]
         const handler = new checkoutHandler();
         let quantity = 5
-        let expectedPrice = (1*2) + (1*Item.itemPrice);
+        let expectedPrice = (1) + (2*Item.itemPrice);
         const price = await handler.calculateItemPrice(Item,quantity)
         expect(price).toBe(expectedPrice)
     })

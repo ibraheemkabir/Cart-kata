@@ -7,9 +7,7 @@ export interface stockItem {
     "priceType": 'unit' | 'weight',
     "quantityInStock": number,
     "asActiveDiscount": boolean,
-    "discountId"?: string,
-    "discountPrice": number,
-    "discountQuantity":number
+    "discountRules": string[]
 }
 
 export interface basketItems {
@@ -19,6 +17,7 @@ export interface basketItems {
 
 export interface Discount {
     "discountId": string,
-    "discountType": "sameItem" | "otherItem"| "special"
-    "specialDiscountItemId"?: string,
+    "priceType": "sameItem" | "otherItem"| "special"
+    "discountQty":number
+    "price":number
 }

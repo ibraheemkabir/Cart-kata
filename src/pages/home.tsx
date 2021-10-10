@@ -2,7 +2,6 @@ import React from 'react';
 import './../App.scss';
 import { ShoppingItemContainer } from './../components/shoppingItem';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import { createSlice } from '@reduxjs/toolkit';
 import { basketItems } from './../types/shoppingItem';
 import { useDispatch } from 'react-redux';
@@ -55,19 +54,15 @@ function HomePage() {
   const handleRecieptClose = () => setOpenReciept(false);
 
   return (
-    <div className="App">
-      <header>
-        <Box sx={{ flexGrow: 1 }}>
-          <MenuBar
-            handleRecieptOpen={handleRecieptOpen}
-            anchorEl={anchorEl}
-            cartDetailsOpen={open}
-            handleCartClose={handleCartClose}
-            handleCartClick={handleCartClick}
-          />
-        </Box>
-      </header>
-      <div className="container">
+    <div className="App">  
+      <MenuBar
+        handleRecieptOpen={handleRecieptOpen}
+        anchorEl={anchorEl}
+        cartDetailsOpen={open}
+        handleCartClose={handleCartClose}
+        handleCartClick={handleCartClick}
+      />
+      <div className="items-display container">
         <Grid container justifyContent="space-between">
           {
             stockItems.map(
@@ -85,17 +80,13 @@ function HomePage() {
           }
         </Grid>
       </div>
-      <div className="totalContainer">
-        <CartTotalComponent
-          viewReciept={()=>handleRecieptOpen()}
-        />
-      </div>
-      <div className="totalContainer">
-        <ShoppingReceipt
-          open={openReciept}
-          handleClose={handleRecieptClose}
-        />
-      </div>
+      <CartTotalComponent
+        viewReciept={()=>handleRecieptOpen()}
+      />
+      <ShoppingReceipt
+        open={openReciept}
+        handleClose={handleRecieptClose}
+      />
     </div>
   );
 }

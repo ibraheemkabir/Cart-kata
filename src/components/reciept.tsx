@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { checkoutHandler } from './../common/handler';
+import { checkoutHandler } from '../common/checkout';
 import Modal from '@mui/material/Modal';
 
 

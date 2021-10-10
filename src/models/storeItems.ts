@@ -13,41 +13,43 @@ export const stockItems: stockItem[] = [
         asActiveDiscount: true,
         itemImage: Cola,
         itemDescription: 'cola is a fizzy fizzy drink.',
-        discountId: "10001",
-        discountPrice: 1,
-        discountQuantity: 2
+        discountRules:['1001']
     },
     {
         id: "10002",
         itemName: 'Can Of Beans',
-        itemPrice: 0.7,
+        itemPrice: 0.5,
         priceType: 'unit',
         asActiveDiscount: true,
         itemImage: BEANS,
         itemDescription: 'A can of delicious beans stocked with vitamins.',
         quantityInStock: 5,
-        discountId: "10001",
-        discountPrice: 1.4,
-        discountQuantity: 3
+        discountRules:['1002']
     },
     {
-        id: "1003",
+        id: "10003",
         itemName: 'Oranges',
         itemPrice: 1.99,
         priceType: 'weight',
         asActiveDiscount: false,
         itemImage: ORANGE,
         itemDescription: 'A nicely grown orange, smells good and tastes very good.',
-        discountId: "10001",
         quantityInStock: 15,
-        discountPrice: 1,
-        discountQuantity: 2
+        discountRules:[]
     }
 ]
 
 export const storeDiscounts:Discount[] = [
     {
-        "discountId": '10001',
-        "discountType": "sameItem",
+        "discountId": '1001',
+        "priceType":"sameItem" as any,
+        "discountQty":2,
+        "price":1
+    },
+    {
+        "discountId": '1002',
+        "priceType":"sameItem" as any,
+        "discountQty":3,
+        "price":1
     }
 ]

@@ -44,7 +44,6 @@ export const ShoppingItemContainer = (props:{
         if(invalidEntry){
             setInvalidEntry(false)
         }
-        console.log(qty,value)
         switch(operator) {
             case 'minus':
                 qty > 0 && setQty(qty-1);
@@ -64,7 +63,7 @@ export const ShoppingItemContainer = (props:{
         
     }
 
-    return <div>
+    return <div className="totalContainer">
         <Card sx={{ maxWidth: 345, minHeight:100, justifyContent:"center", display:"flex" }}>
             <div>
                 <div>

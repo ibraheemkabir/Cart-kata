@@ -43,6 +43,7 @@ input[type="number"] {
 .qtyfield {
   width: 25%;
   text-align: center;
+  margin: 0px 8px !important;
     .MuiFilledInput-root{
       background-color: transparent;
       border-style: solid;
@@ -53,7 +54,28 @@ input[type="number"] {
         border-bottom: none;
       }
     }
+
+    input{
+      text-align: center;
+    }
+
+    #filled-start-adornment-label{
+      font-size: 0.8rem;
+    }
+
+    .MuiInputBase-inputAdornedStart{
+      height: 0.8em;
+      text-align: start;
+    }
     
+}
+
+.product_description{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 
@@ -70,6 +92,11 @@ input[type="number"] {
 
 .totalContainer {
   width: 70%;
+  margin: 3% auto;
+}
+
+.itemsContainer {
+  width: 90%;
   margin: 3% auto;
 }
 

@@ -72,7 +72,7 @@ export const ShoppingItemContainer = (props:{
                     <Typography gutterBottom variant="h5" component="div">
                         {storeItem.itemName}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" className="product_description">
                         {storeItem.itemDescription}
                     </Typography>
                 </CardContent>

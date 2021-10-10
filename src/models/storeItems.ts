@@ -12,7 +12,7 @@ export const stockItems: stockItem[] = [
         quantityInStock: 50,
         asActiveDiscount: true,
         itemImage: Cola,
-        itemDescription: 'cola is a fizzy fizzy drink. Gluten-free, dairy-free and nut-free,Best served chilled',
+        itemDescription: 'cola is a fizzy fizzy drink. Gluten-free, dairy-free and nut-free,Best served chilled.',
         discountRules:['1001']
     },
     {

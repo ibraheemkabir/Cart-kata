@@ -41,7 +41,12 @@ export const ShoppingReceipt = (props:{open:boolean,handleClose:()=>void}) => {
             },
         }}
         >
-        <Paper elevation={3}
+        <Paper 
+            elevation={3}
+            sx={{
+                maxHeight: "800px",
+                overflow: "scroll"
+            }}
             children={
                 <>
                 <Box sx={{ my: 2}}>

@@ -33,6 +33,12 @@ export const shoppingCartSlice = createSlice(
           state.cart[action.payload.index] = {...state.cart[action.payload.index], qty}
         }
       },
+      removeCartItem: (state,action) => {
+        if(state.cart[action.payload.index]){
+          console.log(state,'tsattetet',action.payload.index)
+          state.cart.splice(action.payload.index,1)
+        }
+      }
     }
   }
 )
@@ -61,13 +67,14 @@ function HomePage() {
         cartDetailsOpen={open}
         handleCartClose={handleCartClose}
         handleCartClick={handleCartClick}
+        removeCartItem={(index:number)=>dispatch(Actions.removeCartItem({index}))}
       />
       <div className="items-display container">
         <Grid container justifyContent="space-between">
           {
             stockItems.map(
               (e:stockItem,i:number) => 
-                <Grid item xs={4} key={i}>
+                <Grid item xs={12} sm={4} key={i}>
                     <ShoppingItemContainer
                     storeItem={e}
                     itemImg={e.itemImage}

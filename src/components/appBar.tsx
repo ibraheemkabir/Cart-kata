@@ -15,15 +15,18 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { basketItems } from '../types/shoppingItem';
 import Box from '@mui/material/Box';
+import { Delete } from '@material-ui/icons';
 
 export const MenuBar = (props:{
         handleCartClick:(event: React.MouseEvent<HTMLElement>)=>void,
-        handleCartClose:()=>void,cartDetailsOpen:boolean,
+        handleCartClose:()=>void,
+        cartDetailsOpen:boolean,
         handleRecieptOpen:()=>void,
-        anchorEl: HTMLElement | null
+        anchorEl: HTMLElement | null,
+        removeCartItem:(v:number)=>void,
     }) => {
     const userCart = useSelector((state: RootState) => state.shoppingCart.cart);
-    const {handleCartClick,handleCartClose,cartDetailsOpen,anchorEl,handleRecieptOpen} = props;
+    const {handleCartClick,handleCartClose,cartDetailsOpen,anchorEl,handleRecieptOpen,removeCartItem} = props;
     
     return (
       <header>
@@ -91,12 +94,12 @@ export const MenuBar = (props:{
                     <div>
                       {
                         userCart.map(
-                          (e:basketItems) => 
+                          (e:basketItems,i:number) => 
                             <MenuItem>
                               <ListItemIcon sx={{marginRight:"5px"}}>
                                 {e.qty} {e.item.priceType === 'unit' ? 'unit(s) ' : 'Kg(s)'} of
                               </ListItemIcon>
-                              {e.item.itemName}
+                              {e.item.itemName} <Delete onClick={()=>removeCartItem(i)}/>
                             </MenuItem>
                         ) 
                       }

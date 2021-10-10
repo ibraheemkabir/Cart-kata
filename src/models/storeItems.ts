@@ -12,7 +12,7 @@ export const stockItems: stockItem[] = [
         quantityInStock: 50,
         asActiveDiscount: true,
         itemImage: Cola,
-        itemDescription: 'cola is a fizzy fizzy drink.',
+        itemDescription: 'cola is a fizzy fizzy drink. Gluten-free, dairy-free and nut-free,Best served chilled',
         discountRules:['1001']
     },
     {
@@ -22,7 +22,7 @@ export const stockItems: stockItem[] = [
         priceType: 'unit',
         asActiveDiscount: true,
         itemImage: BEANS,
-        itemDescription: 'A can of delicious beans stocked with vitamins.',
+        itemDescription: 'A can of delicious beans stocked with vitamins. Filled with Beans (51%), Tomatoes (34%), Water, Sugar, Modified Cornflour, Salt, Spirit Vinegar.',
         quantityInStock: 5,
         discountRules:['1002']
     },

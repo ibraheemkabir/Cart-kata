@@ -88,7 +88,7 @@ export const MenuBar = (props:{
                   <Divider />
                   {
                     userCart.length > 0 ?
-                    <>
+                    <div>
                       {
                         userCart.map(
                           (e:basketItems) => 
@@ -106,7 +106,7 @@ export const MenuBar = (props:{
                           View Receipt
                         </Button>
                       </MenuItem>
-                    </>
+                    </div>
                     : 
                     <MenuItem>
                       There are no items in your cart.

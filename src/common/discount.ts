@@ -1,5 +1,4 @@
 import {stockItem, basketItems} from './../types/shoppingItem'
-import {findItem} from './../utils/utils';
 import {Discount} from './../types/shoppingItem'
 import _ from 'lodash';
 
@@ -59,39 +58,6 @@ export class DiscountHandler {
             "remainingQty": remainingQty
         }
     }
-
-    // newCalculateCartDiscountTotal(items:basketItems[]){
-    //     if(items.length > 0){
-    //         let total = 0
-    //         for (const item of items){
-    //             if(item.item.asActiveDiscount && item.qty>=item.item.discountQuantity){
-    //                 let price = this.newCalculateItemDiscount(item.item,item.qty)
-    //                 total+=price.discount
-    //             }
-    //         }
-    //         return total;
-    //     }
-    //     return 0
-    // }
-
-
-    // calculateItemDiscount(item:stockItem,qty:number):number{
-    //     if(item.asActiveDiscount){
-    //         let discount = findItem(item?.discountId!,this.storeDiscounts,'discountId');
-    //         if(discount){
-    //             switch(discount.discountType){
-    //                 case "sameItem":
-    //                     let DiscountMultiple = qty/Number(item.discountQuantity) || '0.0'
-    //                     let numberOfDiscount = DiscountMultiple.toString().split('.')[0]
-    //                     let discountPrice = Number(numberOfDiscount) * item?.discountPrice
-    //                     return discountPrice
-    //             }
-                    
-    //         }
-    //         return 0
-    //     }
-    //     return 0
-    // }
 
     calculateCartDiscountTotal(items:basketItems[]){
         if(items.length > 0){

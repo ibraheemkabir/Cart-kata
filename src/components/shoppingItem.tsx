@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { AddCircle } from '@material-ui/icons';
 import { RemoveCircle } from '@material-ui/icons';
-import { AddShoppingCart } from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { basketItems,stockItem } from './../types/shoppingItem';
@@ -33,7 +32,7 @@ export const ShoppingItemContainer = (props:{
             return
         }
         const itemIdx = userCart.findIndex((e:basketItems)=> e.item.id === storeItem.id);
-        if(itemIdx != (-1)){
+        if(itemIdx !== (-1)){
             props.increaseQty(itemIdx,qty)
         }else{
             props.onAddItem({"qty":qty,"item": props.storeItem})
@@ -63,7 +62,7 @@ export const ShoppingItemContainer = (props:{
         
     }
 
-    return <div className="totalContainer">
+    return <div className="itemsContainer">
         <Card sx={{ maxWidth: 345, minHeight:100, justifyContent:"center", display:"flex" }}>
             <div>
                 <div>
@@ -81,8 +80,8 @@ export const ShoppingItemContainer = (props:{
                     {
                         storeItem.priceType === 'unit' ?
                         <>
-                            <IconButton className="roundedBtn">
-                                <RemoveCircle onClick={()=> handleQtyChange('minus')} className="roundedBtn" />
+                            <IconButton className="roundedBtn" onClick={()=> handleQtyChange('minus')}>
+                                <RemoveCircle className="roundedBtn" />
                             </IconButton>
                             <TextField 
                                 value={qty}
@@ -94,10 +93,9 @@ export const ShoppingItemContainer = (props:{
                                 className={'qtyfield'} 
                                 inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} 
                             />
-                            <IconButton className="roundedBtn" >
+                            <IconButton className="roundedBtn" onClick={()=> handleQtyChange('add')}>
                                 <AddCircle 
                                     className="roundedBtn" 
-                                    onClick={()=> handleQtyChange('add')}
                                 />
                             </IconButton> 
                         </>
@@ -120,7 +118,7 @@ export const ShoppingItemContainer = (props:{
                     }
                     <div>
                         <Button size="small" color="primary" onClick={()=>handleAddItem()}>
-                            Add to Cart <AddShoppingCart/>
+                            Add to Cart
                         </Button>
                     </div>
                 </CardActions>

@@ -66,8 +66,8 @@ function HomePage() {
         <Grid container justifyContent="space-between">
           {
             stockItems.map(
-              (e:stockItem) => 
-                <Grid item xs={4}>
+              (e:stockItem,i:number) => 
+                <Grid item xs={4} key={i}>
                     <ShoppingItemContainer
                     storeItem={e}
                     itemImg={e.itemImage}

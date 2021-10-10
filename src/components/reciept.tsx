@@ -89,7 +89,7 @@ export const ShoppingReceipt = (props:{open:boolean,handleClose:()=>void}) => {
                                         {
                                             userCart.map( (e,i) =>  {
                                                 const discountPrice = handler.getItemDiscount(e.item,e.qty)
-                                                if(e.item.asActiveDiscount && (discountPrice != 0)){
+                                                if(e.item.asActiveDiscount && (discountPrice !== 0)){
                                                     return (
                                                         <ListItem sx={{margin: 'auto 5%'}} key={i} secondaryAction={<ListItemText primary={`-${discountPrice}`} />}>
                                                             <ListItemText primary={`${e.item.itemName}`} />

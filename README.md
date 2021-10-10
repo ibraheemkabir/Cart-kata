@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Shopping Cart Kata
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Description
+
+A simple supermarket basket UI with some pricing business logic.
+It allows a user to add supermarket items to a basket and remove items from the basket. 
+The app automatically calculates and display the costs of the items, any applicable discounts,and the total amount to pay.
 
 ## Available Scripts
 
